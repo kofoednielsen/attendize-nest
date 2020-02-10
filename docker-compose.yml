@@ -8,12 +8,14 @@ services:
     env_file:
       - ./.env
     ports:
-    - "8080:80"
-    - "8081:443"
+    - "80:80"
+    - "443:443"
     networks:
       - attendizenet
     volumes:
       - .:/usr/share/nginx/html/attendize
+      - /etc/letsencrypt/live/nest.wtf/fullchain.pem:/etc/letsencrypt/live/nest.wtf/fullchain.pem
+      - /etc/letsencrypt/live/nest.wtf/privkey.pem:/etc/letsencrypt/live/nest.wtf/privkey.pem
     depends_on:
       - php
   php:
